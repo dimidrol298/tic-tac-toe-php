@@ -14,9 +14,9 @@ composer install && composer update
 
 Add base dump.
 ```
-
 tic-tac-toe.sql
 ```
+Configure database access in config/db.php file
 
 ## API routes:
 //POST create new game
