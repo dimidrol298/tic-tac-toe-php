@@ -242,7 +242,7 @@ class Game extends DataBase
             ->select()
             ->first();
         if ($lastId) {
-            return $lastId + 1;
+            return $lastId->id + 1;
         }
 
         return 1;
