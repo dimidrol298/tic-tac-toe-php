@@ -4,7 +4,7 @@
 
 Clone the repository-
 ```
-git clone https://github.com/dimidrol298/RaDevs-laravel-crud.git
+git clone https://github.com/dimidrol298/tic-tac-toe-php.git
 ```
 Then do a composer install and composer update
 ```
