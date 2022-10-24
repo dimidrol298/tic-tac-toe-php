@@ -58,9 +58,9 @@ class Game extends DataBase
     }
 
     /**
-     * @param $field
+     * @param array $field
      */
-    public function setGameField($field): void
+    public function setGameField(array $field): void
     {
         $this->field = $field;
     }
@@ -74,9 +74,9 @@ class Game extends DataBase
     }
 
     /**
-     * @param $state
+     * @param string $state
      */
-    public function setGameState($state): void
+    public function setGameState(string $state): void
     {
         $this->state = $state;
     }
@@ -90,9 +90,9 @@ class Game extends DataBase
     }
 
     /**
-     * @param $player
+     * @param string $player
      */
-    public function setPlayer($player): void
+    public function setPlayer(string $player): void
     {
         $this->player = $player;
     }
@@ -106,9 +106,9 @@ class Game extends DataBase
     }
 
     /**
-     * @param $id
+     * @param int $id
      */
-    public function setGameId($id): void
+    public function setGameId(int $id): void
     {
         $this->id = $id;
     }
@@ -122,9 +122,9 @@ class Game extends DataBase
     }
 
     /**
-     * @param $winner
+     * @param null|string $winner
      */
-    public function setGameWinner($winner): void
+    public function setGameWinner(?string $winner): void
     {
         $this->winner = $winner;
     }
@@ -210,11 +210,11 @@ class Game extends DataBase
     }
 
     /**
-     * @param $id
-     * @param $data
+     * @param int $id
+     * @param array $data
      * @return int
      */
-    public function updateGame($id, $data): int
+    public function updateGame(int $id, array $data): int
     {
         return $this->dbConn->update(self::TABLE_NAME)
             ->where('id')->is($id)
@@ -222,10 +222,10 @@ class Game extends DataBase
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return int
      */
-    public function deleteGame($id): int
+    public function deleteGame(int $id): int
     {
         return $this->dbConn->from(self::TABLE_NAME)
             ->where('id')->is($id)
@@ -240,9 +240,11 @@ class Game extends DataBase
         $lastId = $this->dbConn->from(self::TABLE_NAME)
             ->orderBy('id', 'desc')
             ->select()
-            ->first()
-            ->id;
+            ->first();
+        if ($lastId) {
+            return $lastId + 1;
+        }
 
-        return $lastId + 1;
+        return 1;
     }
 }
